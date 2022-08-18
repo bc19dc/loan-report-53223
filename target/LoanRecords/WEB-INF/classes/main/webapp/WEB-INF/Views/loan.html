@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Loan Page</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        h1 {
+            text-align:center;
+        }
+        .btn {
+            /*width: 100%;*/
+            text-align: left;
+        }
+        #mes {
+            color: red;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<h1>Loan Records</h1>
+<div class="container">
+    <p th:text="${errorMessage}" id="mes" style="color:red">Test</p>
+    <div class="container2">
+        <p>The following are the loan records</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Client Number</th>
+                <th>Client Name</th>
+                <th>Loan Amount</th>
+                <th>Number of years</th>
+                <th>Loan Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="loanlist" type=""*/-->
+            <tr th:each="p:${loanlist}">
+                <td th:text="${p.clientno}"></td>
+                <td th:text="${p.clientname}"></td>
+                <td th:text="${p.loanamount}"></td>
+                <td th:text="${p.years}"></td>
+                <td th:text="${p.loantype}"></td>
+                <td> <a type="button" class="btn btn-primary"
+                        th:href="@{update-todo(id=${p.clientno})}">Edit</a> </td>
+                <td> <a type="button" class="btn btn-primary"
+                        th:href="@{delete-todo(id=${p.clientno})}" onclick="return confirm('Are you sure you want to delete the record?')">Delete</a> </td>
+                <td> <a type="button" class="btn btn-primary" th:onmouseout="'myFunction()'"
+                        th:href="@{see-todo(id=${p.clientno})}" >Amortization Table</a> </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success" href="add-todo">Add</a>
+    </div>
+</div>
+<script>
+    // document.getElementById("mes").innerHTML = "";
+    function myFunction() {
+
+        document.getElementById("mes").innerHTML = "";
+    }
+</script>
+</body>
+</html>

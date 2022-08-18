@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Items</title>
+</head>
+<body>
+<div class="container">
+    <h1>Projected table of customer number <span th:text="${clientno}" ></span></h1>
+    <h1>Name <span th:text="${clientname}" ></span></h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Month</th>
+            <th>Starting Amount</th>
+            <th>Interest</th>
+            <th>Monthly Payment</th>
+            <th>Ending Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p:${loanlist}">
+            <td th:text="${p.year}"></td>
+            <td th:text="${p.amount}"></td>
+            <td th:text="${p.interest}"></td>
+            <td th:text="${p.payment}"></td>
+            <td th:text="${p.balance}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <form method="POST">
+        <input class="btn btn-back" type="submit" value="Submit" />
+    </form>
+</div>
+</body>
+</html>
